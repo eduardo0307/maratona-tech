@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzes</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4A90E2;
+            color: #4A90E2;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #357ABD;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        .question h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .answers {
+            list-style: none;
+            padding: 0;
+        }
+
+        .answers li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .answers input {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .result {
+            display: none;
+            padding: 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .result.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .result.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>TecnoInclusão</h1>
+            <nav>
+                <ul>
+                    <li><a href="start.html">Início</a></li>
+                    <li><a href="Lições.html">Lições</a></li>
+                    <li><a href="Contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="quiz-container">
+            <h2> Redes Sociais</h2>
+            <p>Teste seus conhecimentos sobre redes sociais e como elas impactam a comunicação e a privacidade.</p>
+
+            <form id="quizForm">
+                <!-- Perguntas do Quiz -->
+                <div class="question">
+                    <h3>1. Qual é o principal objetivo das redes sociais?</h3>
+                    <ul class="answers">
+                        <li><input type="radio" name="q1" value="a"> A) Compartilhar conteúdo e conectar pessoas</li>
+                        <li><input type="radio" name="q1" value="b"> B) Armazenar documentos</li>
+                        <li><input type="radio" name="q1" value="c"> C) Programar softwares</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h3>2. O que é um "perfil" em uma rede social?</h3>
+                    <ul class="answers">
+                        <li><input type="radio" name="q2" value="a"> A) Uma página pessoal com informações e posts</li>
+                        <li><input type="radio" name="q2" value="b"> B) Uma ferramenta de segurança</li>
+                        <li><input type="radio" name="q2" value="c"> C) Um tipo de software</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h3>3. O que significa "privacidade" em redes sociais?</h3>
+                    <ul class="answers">
+                        <li><input type="radio" name="q3" value="a"> A) Controle sobre quem pode ver suas informações e postagens</li>
+                        <li><input type="radio" name="q3" value="b"> B) O processo de criar conteúdo</li>
+                        <li><input type="radio" name="q3" value="c"> C) O envio de mensagens</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h3>4. O que é um "amigo" em redes sociais?</h3>
+                    <ul class="answers">
+                        <li><input type="radio" name="q4" value="a"> A) Um usuário com quem você está conectado e pode interagir</li>
+                        <li><input type="radio" name="q4" value="b"> B) Um tipo de software</li>
+                        <li><input type="radio" name="q4" value="c"> C) Um perfil de empresa</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h3>5. O que é um "feed" em uma rede social?</h3>
+                    <ul class="answers">
+                        <li><input type="radio" name="q5" value="a"> A) Uma sequência de atualizações e postagens de usuários</li>
+                        <li><input type="radio" name="q5" value="b"> B) Um tipo de aplicativo</li>
+                        <li><input type="radio" name="q5" value="c"> C) Um recurso de segurança</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h3>6. O que significa "curtir" um post?</h3>
+                    <ul class="answers">
+                        <li><input type="radio" name="q6" value="a"> A) Mostrar que você gosta ou apoia o conteúdo</li>
+                        <li><input type="radio" name="q6" value="b"> B) Compartilhar o post com todos os seus contatos</li>
+                        <li><input type="radio" name="q6" value="c"> C) Salvar o post em uma pasta específica</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h3>7. O que é um "seguindo" em uma rede social?</h3>
+                    <ul class="answers">
+                        <li><input type="radio" name="q7" value="a"> A) Um usuário que recebe atualizações de outro usuário</li>
+                        <li><input type="radio" name="q7" value="b"> B) Um tipo de mensagem direta</li>
+                        <li><input type="radio" name="q7" value="c"> C) Um recurso para editar postagens</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h3>8. O que são "hashtags"?</h3>
+                    <ul class="answers">
+                        <li><input type="radio" name="q8" value="a"> A) Palavras ou frases precedidas pelo símbolo "#" para categorizar postagens</li>
+                        <li><input type="radio" name="q8" value="b"> B) Tipos de arquivos de imagem</li>
+                        <li><input type="radio" name="q8" value="c"> C) Ferramentas de edição de vídeo</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h3>9. O que é "taggear" alguém em uma postagem?</h3>
+                    <ul class="answers">
+                        <li><input type="radio" name="q9" value="a"> A) Identificar e vincular uma pessoa em uma foto ou postagem</li>
+                        <li><input type="radio" name="q9" value="b"> B) Criar um grupo de mensagens</li>
+                        <li><input type="radio" name="q9" value="c"> C) Adicionar um comentário</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h3>10. O que é um "post patrocinado"?</h3>
+                    <ul class="answers">
+                        <li><input type="radio" name="q10" value="a"> A) Uma postagem paga para promover produtos ou serviços</li>
+                        <li><input type="radio" name="q10" value="b"> B) Uma postagem enviada automaticamente por um bot</li>
+                        <li><input type="radio" name="q10" value="c"> C) Uma postagem que aparece na sua linha do tempo</li>
+                    </ul>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="checkAnswers()">Enviar Respostas</button>
+            </form>
+
+            <div id="result" class="result"></div>
+        </div>
+    </main>
+
+    <script>
+        function checkAnswers() {
+            const correctAnswers = {
+                q1: 'a',
+                q2: 'a',
+                q3: 'a',
+                q4: 'a',
+                q5: 'a',
+                q6: 'a',
+                q7: 'a',
+                q8: 'a',
+                q9: 'a',
+                q10: 'a'
+            };
+
+            let score = 0;
+            const form = document.getElementById('quizForm');
+            const resultDiv = document.getElementById('result');
+
+            for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
+                const selectedOption = form.querySelector(`input[name="${question}"]:checked`);
+                if (selectedOption && selectedOption.value === correctAnswer) {
+                    score++;
+                }
+            }
+
+            if (score === Object.keys(correctAnswers).length) {
+                resultDiv.textContent = 'Parabéns! Você respondeu todas as perguntas corretamente.';
+                resultDiv.className = 'result correct';
+            } else {
+                resultDiv.textContent = `Você acertou ${score} de ${Object.keys(correctAnswers).length} perguntas.`;
+                resultDiv.className = 'result incorrect';
+            }
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
