@@ -14,7 +14,63 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Kalnia+Glaze:wght@100..700&display=swap" rel="stylesheet">
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>     
-   </head>
+          
+       <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-header h2 {
+            font-size: 28px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .quiz-header p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .quiz-link {
+            display: block;
+            text-align: center;
+            font-size: 18px;
+            color: #007bff;
+            text-decoration: none;
+            margin: 20px 0;
+            padding: 10px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .quiz-link:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+    </head>
 
     <body>
        <header class="animate__animated animate__fadeInDown">              
@@ -57,34 +113,16 @@
                 </article>
     
                 <!-- Adicionando os Quizzes -->
-                <section class="quizzes">
-                    <div class="container">
+                <div class="quiz-container">
+                    <div class="quiz-header">
                         <h2>Quizzes Interativos</h2>
-                        <p>Teste seus conhecimentos com nossos quizzes interativos. Escolha um quiz abaixo e veja como você se sai!</p>
-                        </section>
-                        <div class="quiz-grid">
-                            <div class="quiz-item">
-                                <h3>Quiz: Conceitos Básicos de Internet</h3>
-                                <p>Este quiz testa seu conhecimento sobre os conceitos fundamentais da internet.</p>
-                                <a href="quizz1.html" class="btn">Participar</a>
-                            </div>
-                            <div class="quiz-item">
-                                <h3>Quiz: Segurança Online</h3>
-                                <p>Verifique seu entendimento sobre como manter-se seguro online.</p>
-                                <a href="quizz2.html" class="btn">Participar</a>
-                            </div>
-                            <div class="quiz-item">
-                                <h3>Quiz: Redes Sociais</h3>
-                                <p>Avalie seu conhecimento sobre o uso e impacto das redes sociais.</p>
-                                <a href="quizz3.html" class="btn">Participar</a>
-                            </div>
-                            <div class="quiz-item">
-                                <h3>Quiz: Ferramentas Digitais</h3>
-                                <p>Teste sua familiaridade com ferramentas digitais essenciais.</p>
-                                <a href="quizz4.html" class="btn">Participar</a>
-                            </div>
-                        </div>
+                        <p>Teste seus conhecimentos com nossos quizzes interativos. Escolha um dos quizzes abaixo e veja como você se sai!</p>
                     </div>
+                    <a href="quizz1.html" class="quiz-link">Quiz: Conceitos Básicos de Internet</a>
+                    <a href="quizz2.html" class="quiz-link">Quiz: Segurança Online</a>
+                    <a href="quizz3.html" class="quiz-link">Quiz: Redes Sociais</a>
+                    <a href="quizz4.html" class="quiz-link">Quiz: Ferramentas Digitais</a>
+                </div>
                 </section>
             </main>
     
