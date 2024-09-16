@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quizzes</title>
+    <title>Quiz Interativo</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -15,7 +15,7 @@
 
         header {
             background-color: #4A90E2;
-            color: #4A90E2;
+            color: white;
             padding: 20px 0;
             position: sticky;
             top: 0;
@@ -55,6 +55,42 @@
             background-color: #357ABD;
         }
 
+        .start-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .start-container input {
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .start-btn {
+            padding: 20px 40px;
+            font-size: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .start-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
         .quiz-container {
             max-width: 800px;
             margin: 40px auto;
@@ -63,15 +99,10 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border: 1px solid #ddd;
+            display: none; /* Escondido até iniciar o quiz */
         }
 
-        h1 {
-            text-align: center;
-            color: #ffffff;
-            margin-bottom: 20px;
-        }
-
-        h2 {
+        h1, h2 {
             text-align: center;
             color: #333;
         }
@@ -120,6 +151,22 @@
             transform: scale(1.05);
         }
 
+        .progress-bar-container {
+            margin: 20px 0;
+            height: 20px;
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background-color: #4caf50;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
         .result {
             display: none;
             padding: 20px;
@@ -140,6 +187,43 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+
+        .replay-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .replay-btn:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        .question-summary {
+            margin-top: 20px;
+        }
+
+        .question-summary div {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .question-summary .correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .question-summary .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
     </style>
 </head>
 <body>
@@ -156,13 +240,23 @@
         </div>
     </header>
 
+    <div class="start-container">
+        <input type="text" id="nickname" placeholder="Digite seu apelido" />
+        <button class="start-btn" onclick="startQuiz()">Iniciar Quiz</button>
+    </div>
+
     <main>
         <div class="quiz-container">
-            <h2> Conceitos Básicos de Internet</h2>
+            <h2>Conceitos Básicos de Internet</h2>
             <p>Responda às perguntas abaixo para testar seus conhecimentos sobre conceitos básicos de internet.</p>
+
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
 
             <form id="quizForm">
                 <!-- Perguntas do Quiz -->
+                <!-- (As perguntas do quiz aqui seguem o mesmo padrão anterior) -->
                 <div class="question">
                     <h3>1. O que é a internet?</h3>
                     <ul class="answers">
@@ -172,7 +266,7 @@
                     </ul>
                 </div>
 
-                <div class="question">
+                <div class="question" id="q2">
                     <h3>2. Qual é o propósito do protocolo HTTP?</h3>
                     <ul class="answers">
                         <li><input type="radio" name="q2" value="a"> A) Transferir arquivos entre computadores</li>
@@ -181,7 +275,7 @@
                     </ul>
                 </div>
 
-                <div class="question">
+                <div class="question" id="q3">
                     <h3>3. O que significa a sigla URL?</h3>
                     <ul class="answers">
                         <li><input type="radio" name="q3" value="a"> A) Uniform Resource Locator</li>
@@ -190,7 +284,7 @@
                     </ul>
                 </div>
 
-                <div class="question">
+                <div class="question" id="q4">
                     <h3>4. O que é um IP?</h3>
                     <ul class="answers">
                         <li><input type="radio" name="q4" value="a"> A) Um tipo de software de segurança</li>
@@ -199,7 +293,7 @@
                     </ul>
                 </div>
 
-                <div class="question">
+                <div class="question" id="q5">
                     <h3>5. O que faz um navegador web?</h3>
                     <ul class="answers">
                         <li><input type="radio" name="q5" value="a"> A) Armazena dados em cache</li>
@@ -208,7 +302,7 @@
                     </ul>
                 </div>
 
-                <div class="question">
+                <div class="question" id="q6">
                     <h3>6. Qual é a função de um servidor DNS?</h3>
                     <ul class="answers">
                         <li><input type="radio" name="q6" value="a"> A) Traduzir URLs em endereços IP</li>
@@ -217,7 +311,7 @@
                     </ul>
                 </div>
 
-                <div class="question">
+                <div class="question" id="q7">
                     <h3>7. O que é um protocolo de rede?</h3>
                     <ul class="answers">
                         <li><input type="radio" name="q7" value="a"> A) Um conjunto de regras para comunicação entre dispositivos</li>
@@ -226,7 +320,7 @@
                     </ul>
                 </div>
 
-                <div class="question">
+                <div class="question" id="q8">
                     <h3>8. O que é um website?</h3>
                     <ul class="answers">
                         <li><input type="radio" name="q8" value="a"> A) Uma coleção de páginas da web acessíveis na internet</li>
@@ -235,7 +329,7 @@
                     </ul>
                 </div>
 
-                <div class="question">
+                <div class="question" id="q9">
                     <h3>9. Qual é a função do protocolo TCP?</h3>
                     <ul class="answers">
                         <li><input type="radio" name="q9" value="a"> A) Garantir a entrega correta e completa de dados entre dispositivos</li>
@@ -244,7 +338,7 @@
                     </ul>
                 </div>
 
-                <div class="question">
+                <div class="question" id="q10">
                     <h3>10. O que é um firewall?</h3>
                     <ul class="answers">
                         <li><input type="radio" name="q10" value="a"> A) Um sistema de segurança que controla o tráfego de rede</li>
@@ -257,10 +351,22 @@
             </form>
 
             <div id="result" class="result"></div>
+            <div id="questionSummary" class="question-summary"></div>
+            <button id="replayBtn" class="replay-btn" onclick="restartQuiz()" style="display: none;">Reiniciar Quiz</button>
         </div>
     </main>
 
     <script>
+       function startQuiz() {
+            const nickname = document.getElementById('nickname').value.trim();
+            if (!nickname) {
+                alert('Por favor, digite seu apelido antes de iniciar o quiz.');
+                return;
+            }
+            document.querySelector('.start-container').style.display = 'none';
+            document.querySelector('.quiz-container').style.display = 'block';
+        }
+
         function checkAnswers() {
             const correctAnswers = {
                 q1: 'a',
@@ -278,22 +384,68 @@
             let score = 0;
             const form = document.getElementById('quizForm');
             const resultDiv = document.getElementById('result');
+            const progressBar = document.getElementById('progressBar');
+            const totalQuestions = Object.keys(correctAnswers).length;
 
-            for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
-                const selectedOption = form.querySelector(`input[name="${question}"]:checked`);
-                if (selectedOption && selectedOption.value === correctAnswer) {
+            let correctCount = 0;
+            let incorrectQuestions = [];
+
+            Object.keys(correctAnswers).forEach((question) => {
+                const selectedOption = form.querySelector(`input[name=${question}]:checked`);
+                const isCorrect = selectedOption && selectedOption.value === correctAnswers[question];
+
+                if (isCorrect) {
                     score++;
+                    correctCount++;
+                } else {
+                    incorrectQuestions.push(question);
                 }
-            }
+            });
 
-            if (score === Object.keys(correctAnswers).length) {
-                resultDiv.textContent = 'Parabéns! Você respondeu todas as perguntas corretamente.';
-                resultDiv.className = 'result correct';
-            } else {
-                resultDiv.textContent = `Você acertou ${score} de ${Object.keys(correctAnswers).length} perguntas.`;
+            const progress = (score / totalQuestions) * 100;
+            progressBar.style.width = `${progress}%`;
+
+            resultDiv.innerHTML = `
+                <h2>Resultado</h2>
+                <p>Você acertou ${correctCount} de ${totalQuestions} perguntas.</p>
+            `;
+
+            resultDiv.className = 'result correct';
+            if (correctCount < totalQuestions) {
                 resultDiv.className = 'result incorrect';
             }
-            resultDiv.style.display = 'block';
+
+            // Mostrar perguntas com cores
+            const questionSummary = document.getElementById('questionSummary');
+            questionSummary.innerHTML = '';
+
+            Object.keys(correctAnswers).forEach((question) => {
+                const questionDiv = document.createElement('div');
+                const selectedOption = form.querySelector(`input[name=${question}]:checked`);
+                const isCorrect = selectedOption && selectedOption.value === correctAnswers[question];
+                questionDiv.className = isCorrect ? 'correct' : 'incorrect';
+
+                let text = '';
+                if (selectedOption) {
+                    text = selectedOption.parentElement.textContent;
+                } else {
+                    text = 'Nenhuma resposta selecionada';
+                }
+                questionDiv.innerHTML = `<strong>Pergunta ${question}: </strong> ${text}`;
+                questionSummary.appendChild(questionDiv);
+            });
+
+            document.getElementById('replayBtn').style.display = 'block';
+        }
+
+        function restartQuiz() {
+            document.getElementById('nickname').value = '';
+            document.querySelector('.start-container').style.display = 'flex';
+            document.querySelector('.quiz-container').style.display = 'none';
+            document.getElementById('result').innerHTML = '';
+            document.getElementById('questionSummary').innerHTML = '';
+            document.getElementById('replayBtn').style.display = 'none';
+            document.getElementById('progressBar').style.width = '0%';
         }
     </script>
 </body>

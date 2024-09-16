@@ -3,13 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title></title>
+        <title>TecnoInclusão - Lições</title>
         <link rel="stylesheet" href="Lições.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
         <link rel="manifest" href="/manifest.json">
-        <link rel="styleheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Kalnia+Glaze:wght@100..700&display=swap" rel="stylesheet">
@@ -21,6 +21,10 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+        }
+
+        h1, h2, h3 {
+            color: #007bff;
         }
 
         .quiz-container {
@@ -40,13 +44,11 @@
 
         .quiz-header h2 {
             font-size: 28px;
-            color: #007bff;
             margin-bottom: 10px;
         }
 
         .quiz-header p {
             font-size: 18px;
-            color: #555;
             line-height: 1.6;
             max-width: 600px;
             margin: 0 auto;
@@ -69,6 +71,33 @@
             background-color: #007bff;
             color: #fff;
         }
+
+        /* Adicionar estilo para imagens nas lições */
+        .lesson-img {
+            width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Adicionar ícones nas lições */
+        .lesson-icon {
+            font-size: 30px;
+            color: #007bff;
+            margin-right: 10px;
+        }
+
+        .icon-list {
+            display: flex;
+            align-items: center;
+        }
+
+        .icon-list li {
+            list-style: none;
+            margin-right: 20px;
+        }
+
     </style>
     </head>
 
@@ -92,27 +121,52 @@
         <main>
             <section id="licoes">
                 <h2>Lições</h2>
+
+                <!-- Lição 1 -->
                 <article id="licao1">
-                    <h3>Lição 1: Introdução à Inclusão Digital</h3>
-                    <p>O que é inclusão digital? Inclusão digital refere-se ao processo de garantir que todas as pessoas tenham acesso e habilidades necessárias para utilizar tecnologias digitais. É importante porque permite a participação plena na sociedade moderna, proporcionando acesso a informações, serviços e oportunidades.</p>
+                    <h3><span class="lesson-icon">📱</span> Lição 1: Introdução à Inclusão Digital</h3>
+                    <p>Inclusão digital é garantir o acesso e a capacidade de uso das tecnologias. Ela é vital para a participação plena na sociedade moderna. Pessoas conectadas têm acesso a oportunidades de educação, trabalho e lazer.</p>
+                    <img src="imagens/inclusao_digital.jpg" alt="Inclusão Digital" class="lesson-img">
+                    <ul class="icon-list">
+                        <li><span class="lesson-icon">💡</span>Dica: Verifique programas de inclusão digital em sua região!</li>
+                        <li><span class="lesson-icon">🌍</span>Curiosidade: No Brasil, mais de 50 milhões de pessoas ainda não têm acesso à internet.</li>
+                    </ul>
                 </article>
-    
+
+                <!-- Lição 2 -->
                 <article id="licao2">
-                    <h3>Lição 2: Navegação na Internet</h3>
-                    <p>Navegar na internet é essencial no mundo digital de hoje. Um navegador de internet é um software que permite acessar e visualizar páginas na web. Exemplos incluem Google Chrome e Mozilla Firefox. Ao navegar, é importante saber como identificar sites seguros para proteger suas informações pessoais.</p>
+                    <h3><span class="lesson-icon">💻</span> Lição 2: Navegação na Internet</h3>
+                    <p>Navegar na internet envolve acessar websites, redes sociais e ferramentas de busca. É importante saber identificar páginas seguras para garantir sua segurança.</p>
+                    <img src="imagens/navegacao_internet.jpg" alt="Navegação na Internet" class="lesson-img">
+                    <ul class="icon-list">
+                        <li><span class="lesson-icon">🔐</span>Dica: Verifique se o site tem o símbolo de cadeado ao lado do endereço, indicando que é seguro.</li>
+                        <li><span class="lesson-icon">🌍</span>Curiosidade: Mais de 90% das pessoas no mundo usam smartphones para navegar na web.</li>
+                    </ul>
                 </article>
-    
+
+                <!-- Lição 3 -->
                 <article id="licao3">
-                    <h3>Lição 3: Comunicação Online</h3>
-                    <p>Comunicação online é feita através de e-mails, redes sociais e outras plataformas. Saber como usar essas ferramentas de forma segura e eficiente é crucial. A netiqueta, ou etiqueta da internet, inclui regras básicas para interações online, garantindo uma comunicação respeitosa e segura.</p>
+                    <h3><span class="lesson-icon">✉️</span> Lição 3: Comunicação Online</h3>
+                    <p>Ferramentas de comunicação online como e-mails e redes sociais são essenciais para a interação no ambiente digital. Aprender a utilizar essas ferramentas de forma eficiente e segura é crucial para uma comunicação fluida.</p>
+                    <img src="imagens/comunicacao_online.jpg" alt="Comunicação Online" class="lesson-img">
+                    <ul class="icon-list">
+                        <li><span class="lesson-icon">📧</span>Dica: Ao enviar e-mails profissionais, sempre use uma linguagem clara e respeitosa.</li>
+                        <li><span class="lesson-icon">💬</span>Curiosidade: O primeiro e-mail foi enviado em 1971, por Ray Tomlinson.</li>
+                    </ul>
                 </article>
-    
+
+                <!-- Lição 4 -->
                 <article id="licao4">
-                    <h3>Lição 4: Segurança na Internet</h3>
-                    <p>Manter sua segurança online é fundamental. Existem várias ameaças, como phishing e malware, que podem comprometer suas informações pessoais. Práticas como criar senhas fortes e usar softwares de segurança ajudam a proteger sua privacidade na internet.</p>
+                    <h3><span class="lesson-icon">🔒</span> Lição 4: Segurança na Internet</h3>
+                    <p>Manter sua segurança online é crucial para evitar fraudes e roubos de informações. O uso de senhas fortes, antivírus e cuidados ao clicar em links suspeitos são práticas essenciais para sua proteção.</p>
+                    <img src="imagens/seguranca_internet.jpg" alt="Segurança na Internet" class="lesson-img">
+                    <ul class="icon-list">
+                        <li><span class="lesson-icon">🛡️</span>Dica: Evite usar a mesma senha em vários sites.</li>
+                        <li><span class="lesson-icon">📱</span>Curiosidade: Em 2023, mais de 2 bilhões de dados pessoais foram vazados em ataques de hackers.</li>
+                    </ul>
                 </article>
-    
-                <!-- Adicionando os Quizzes -->
+
+                <!-- Quizzes Interativos -->
                 <div class="quiz-container">
                     <div class="quiz-header">
                         <h2>Quizzes Interativos</h2>
@@ -123,41 +177,12 @@
                     <a href="quizz3.html" class="quiz-link">Quiz: Redes Sociais</a>
                     <a href="quizz4.html" class="quiz-link">Quiz: Ferramentas Digitais</a>
                 </div>
-                </section>
-            </main>
+            </section>
+        </main>
     
         <footer>
             <p>&copy; 2024 TecnoInclusão. Todos os direitos reservados.</p>
         </footer>
     
-        <!-- JavaScript para verificar as respostas do quiz -->
-<script>
-                                      function checkQuiz() {
-    const answers = {
-        q1: "certo",
-        q2: "certo",
-        q3: "certo",
-        q4: "certo"
-    };
-
-    let score = 0;
-    let totalQuestions = 4;
-
-    for (let q in answers) {
-        let radios = document.getElementsByName(q);
-        for (let i = 0; i < radios.length; i++) {
-            let radio = radios[i];
-            if (radio.checked) {
-                if (radio.value === answers[q]) {
-                    score++;
-                }
-                break;
-            }
-        }
-    }
-
-    alert("Você acertou " + score + " de " + totalQuestions + " perguntas.");
-}
-</script>
     </body>
-    </html>
+</html>
