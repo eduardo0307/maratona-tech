@@ -15,7 +15,7 @@
 
         header {
             background-color: #4A90E2;
-            color: #4A90E2;
+            color: #ffffff;
             padding: 20px 0;
             position: sticky;
             top: 0;
@@ -55,7 +55,7 @@
             background-color: #357ABD;
         }
 
-        .quiz-container {
+        .start-container, .quiz-container {
             max-width: 800px;
             margin: 40px auto;
             padding: 30px;
@@ -65,13 +65,35 @@
             border: 1px solid #ddd;
         }
 
-        h1 {
+        .start-container {
             text-align: center;
-            color: #ffffff;
+        }
+
+        .start-container input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
             margin-bottom: 20px;
         }
 
-        h2 {
+        .start-container button {
+            padding: 12px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .start-container button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .quiz-container h2 {
             text-align: center;
             color: #333;
         }
@@ -102,7 +124,7 @@
             cursor: pointer;
         }
 
-        .submit-btn {
+        .submit-btn, .replay-btn {
             display: block;
             width: 100%;
             padding: 12px;
@@ -113,9 +135,10 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 20px;
         }
 
-        .submit-btn:hover {
+        .submit-btn:hover, .replay-btn:hover {
             background-color: #0056b3;
             transform: scale(1.05);
         }
@@ -140,6 +163,22 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+
+        #questionSummary div {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        #questionSummary .correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        #questionSummary .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
     </style>
 </head>
 <body>
@@ -157,18 +196,21 @@
     </header>
 
     <main>
-        <div class="quiz-container">
-            <h2> Segurança Online</h2>
+        <div class="start-container">
+            <h2>Quiz de Segurança Online</h2>
             <p>Teste seus conhecimentos sobre segurança online e como proteger suas informações pessoais na internet.</p>
+            <input type="text" id="nickname" placeholder="Digite seu apelido">
+            <button class="start-btn" onclick="startQuiz()">Começar Quiz</button>
+        </div>
 
+        <div class="quiz-container" style="display: none;">
             <form id="quizForm">
-                <!-- Perguntas do Quiz -->
                 <div class="question">
                     <h3>1. O que é um phishing?</h3>
                     <ul class="answers">
                         <li><input type="radio" name="q1" value="a"> A) Uma tentativa de obter informações confidenciais enganando o usuário</li>
                         <li><input type="radio" name="q1" value="b"> B) Um tipo de software antivírus</li>
-                        <li><input type="radio" name="q1" value="c"> C) Um protocolo de rede</li>
+                        <li><input type="radio" <li><input type="radio" name="q1" value="c"> C) Um protocolo de rede</li>
                     </ul>
                 </div>
 
@@ -254,13 +296,26 @@
                 </div>
 
                 <button type="button" class="submit-btn" onclick="checkAnswers()">Enviar Respostas</button>
+                <button type="button" class="replay-btn" onclick="resetQuiz()" style="display: none;">Reiniciar Quiz</button>
             </form>
 
             <div id="result" class="result"></div>
+            <div id="questionSummary"></div>
         </div>
     </main>
 
     <script>
+        function startQuiz() {
+            const nickname = document.getElementById('nickname').value.trim();
+            if (nickname === '') {
+                alert('Por favor, insira seu apelido para começar o quiz.');
+                return;
+            }
+
+            document.querySelector('.start-container').style.display = 'none';
+            document.querySelector('.quiz-container').style.display = 'block';
+        }
+
         function checkAnswers() {
             const correctAnswers = {
                 q1: 'a',
@@ -278,11 +333,17 @@
             let score = 0;
             const form = document.getElementById('quizForm');
             const resultDiv = document.getElementById('result');
+            const questionSummary = document.getElementById('questionSummary');
+
+            questionSummary.innerHTML = ''; // Clear previous summary
 
             for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
                 const selectedOption = form.querySelector(`input[name="${question}"]:checked`);
                 if (selectedOption && selectedOption.value === correctAnswer) {
                     score++;
+                    questionSummary.innerHTML += `<div class="correct">Questão ${question.slice(1)}: Correta</div>`;
+                } else {
+                    questionSummary.innerHTML += `<div class="incorrect">Questão ${question.slice(1)}: Incorreta</div>`;
                 }
             }
 
@@ -294,6 +355,16 @@
                 resultDiv.className = 'result incorrect';
             }
             resultDiv.style.display = 'block';
+            document.querySelector('.replay-btn').style.display = 'block';
+        }
+
+        function resetQuiz() {
+            document.querySelector('.start-container').style.display = 'block';
+            document.querySelector('.quiz-container').style.display = 'none';
+            document.getElementById('quizForm').reset();
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('questionSummary').innerHTML = '';
+            document.querySelector('.replay-btn').style.display = 'none';
         }
     </script>
 </body>

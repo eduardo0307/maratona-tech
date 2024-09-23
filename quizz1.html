@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Interativo</title>
+    <title>Quizzes</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -16,30 +16,20 @@
         header {
             background-color: #4A90E2;
             color: white;
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header h1 {
-            margin: 0;
+            padding: 10px 0;
+            text-align: center;
         }
 
         nav ul {
             list-style: none;
             padding: 0;
+            margin: 0;
             display: flex;
+            justify-content: center;
         }
 
         nav ul li {
-            margin-left: 20px;
+            margin: 0 15px;
         }
 
         nav ul li a {
@@ -55,43 +45,7 @@
             background-color: #357ABD;
         }
 
-        .start-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-
-        .start-container input {
-            margin-bottom: 20px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            width: 80%;
-            max-width: 400px;
-        }
-
-        .start-btn {
-            padding: 20px 40px;
-            font-size: 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .start-btn:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
-        }
-
-        .quiz-container {
+        .start-container, .quiz-container {
             max-width: 800px;
             margin: 40px auto;
             padding: 30px;
@@ -99,10 +53,37 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border: 1px solid #ddd;
-            display: none; /* Escondido até iniciar o quiz */
         }
 
-        h1, h2 {
+        .start-container {
+            text-align: center;
+        }
+
+        .start-container input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .start-container button {
+            padding: 12px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .start-container button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .quiz-container h2 {
             text-align: center;
             color: #333;
         }
@@ -133,7 +114,7 @@
             cursor: pointer;
         }
 
-        .submit-btn {
+        .submit-btn, .replay-btn {
             display: block;
             width: 100%;
             padding: 12px;
@@ -144,27 +125,12 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 20px;
         }
 
-        .submit-btn:hover {
+        .submit-btn:hover, .replay-btn:hover {
             background-color: #0056b3;
             transform: scale(1.05);
-        }
-
-        .progress-bar-container {
-            margin: 20px 0;
-            height: 20px;
-            width: 100%;
-            background-color: #e0e0e0;
-            border-radius: 10px;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 0;
-            background-color: #4caf50;
-            border-radius: 10px;
-            transition: width 0.3s ease;
         }
 
         .result {
@@ -188,39 +154,18 @@
             border: 1px solid #f5c6cb;
         }
 
-        .replay-btn {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .replay-btn:hover {
-            background-color: #218838;
-            transform: scale(1.05);
-        }
-
-        .question-summary {
-            margin-top: 20px;
-        }
-
-        .question-summary div {
-            margin-bottom: 10px;
+        #questionSummary div {
             padding: 10px;
+            margin-bottom: 10px;
             border-radius: 5px;
-            border: 1px solid #ddd;
         }
 
-        .question-summary .correct {
+        #questionSummary .correct {
             background-color: #d4edda;
             color: #155724;
         }
 
-        .question-summary .incorrect {
+        #questionSummary .incorrect {
             background-color: #f8d7da;
             color: #721c24;
         }
@@ -240,129 +185,123 @@
         </div>
     </header>
 
-    <div class="start-container">
-        <input type="text" id="nickname" placeholder="Digite seu apelido" />
-        <button class="start-btn" onclick="startQuiz()">Iniciar Quiz</button>
-    </div>
-
     <main>
-        <div class="quiz-container">
+        <div class="start-container">
             <h2>Conceitos Básicos de Internet</h2>
             <p>Responda às perguntas abaixo para testar seus conhecimentos sobre conceitos básicos de internet.</p>
+            <input type="text" id="nickname" placeholder="Digite seu apelido">
+            <button class="start-btn" onclick="startQuiz()">Começar Quiz</button>
+        </div>
 
-            <div class="progress-bar-container">
-                <div class="progress-bar" id="progressBar"></div>
-            </div>
-
+        <div class="quiz-container" style="display: none;">
             <form id="quizForm">
-                <!-- Perguntas do Quiz -->
-                <!-- (As perguntas do quiz aqui seguem o mesmo padrão anterior) -->
                 <div class="question">
-                    <h3>1. O que é a internet?</h3>
-                    <ul class="answers">
-                        <li><input type="radio" name="q1" value="a"> A) Uma rede de computadores interconectados globalmente</li>
-                        <li><input type="radio" name="q1" value="b"> B) Um software para editar textos</li>
-                        <li><input type="radio" name="q1" value="c"> C) Um tipo de vírus de computador</li>
-                    </ul>
-                </div>
+                        <h3>1. O que é a internet?</h3>
+                        <ul class="answers">
+                            <li><input type="radio" name="q1" value="a"> A) Uma rede de computadores interconectados globalmente</li>
+                            <li><input type="radio" name="q1" value="b"> B) Um software para editar textos</li>
+                            <li><input type="radio" name="q1" value="c"> C) Um tipo de vírus de computador</li>
+                        </ul>
+                    </div>
+    
+                    <div class="question">
+                        <h3>2. Qual é o propósito do protocolo HTTP?</h3>
+                        <ul class="answers">
+                            <li><input type="radio" name="q2" value="a"> A) Transferir arquivos entre computadores</li>
+                            <li><input type="radio" name="q2" value="b"> B) Garantir a segurança das informações</li>
+                            <li><input type="radio" name="q2" value="c"> C) Facilitar a comunicação entre navegadores e servidores web</li>
+                        </ul>
+                    </div>
+    
+                    <div class="question">
+                        <h3>3. O que significa a sigla URL?</h3>
+                        <ul class="answers">
+                            <li><input type="radio" name="q3" value="a"> A) Uniform Resource Locator</li>
+                            <li><input type="radio" name="q3" value="b"> B) Universal Resource Language</li>
+                            <li><input type="radio" name="q3" value="c"> C) Uniform Resource Language</li>
+                        </ul>
+                    </div>
+    
+                    <div class="question">
+                        <h3>4. O que é um IP?</h3>
+                        <ul class="answers">
+                            <li><input type="radio" name="q4" value="a"> A) Um tipo de software de segurança</li>
+                            <li><input type="radio" name="q4" value="b"> B) Um endereço único atribuído a cada dispositivo na internet</li>
+                            <li><input type="radio" name="q4" value="c"> C) Um protocolo de comunicação</li>
+                        </ul>
+                    </div>
+    
+                    <div class="question">
+                        <h3>5. O que faz um navegador web?</h3>
+                        <ul class="answers">
+                            <li><input type="radio" name="q5" value="a"> A) Armazena dados em cache</li>
+                            <li><input type="radio" name="q5" value="b"> B) Permite a visualização e interação com sites web</li>
+                            <li><input type="radio" name="q5" value="c"> C) Gerencia redes de computadores</li>
+                        </ul>
+                    </div>
+    
+                    <div class="question">
+                        <h3>6. Qual é a função de um servidor DNS?</h3>
+                        <ul class="answers">
+                            <li><input type="radio" name="q6" value="a"> A) Traduzir URLs em endereços IP</li>
+                            <li><input type="radio" name="q6" value="b"> B) Enviar e-mails</li>
+                            <li><input type="radio" name="q6" value="c"> C) Proteger a rede contra ataques</li>
+                        </ul>
+                    </div>
+    
+                    <div class="question">
+                        <h3>7. O que é um protocolo de rede?</h3>
+                        <ul class="answers">
+                            <li><input type="radio" name="q7" value="a"> A) Um conjunto de regras para comunicação entre dispositivos</li>
+                            <li><input type="radio" name="q7" value="b"> B) Um tipo de vírus de computador</li>
+                            <li><input type="radio" name="q7" value="c"> C) Um software antivírus</li>
+                        </ul>
+                    </div>
+    
+                    <div class="question">
+                        <h3>8. O que é um website?</h3>
+                        <ul class="answers">
+                            <li><input type="radio" name="q8" value="a"> A) Uma coleção de páginas da web acessíveis na internet</li>
+                            <li><input type="radio" name="q8" value="b"> B) Um programa de e-mail</li>
+                            <li><input type="radio" name="q8" value="c"> C) Um tipo de malware</li>
+                        </ul>
+                    </div>
+    
+                    <div class="question">
+                        <h3>9. Qual é a função do protocolo TCP?</h3>
+                        <ul class="answers">
+                            <li><input type="radio" name="q9" value="a"> A) Garantir a entrega correta e completa de dados entre dispositivos</li>
+                            <li><input type="radio" name="q9" value="b"> B) Gerenciar as conexões de e-mail</li>
+                            <li><input type="radio" name="q9" value="c"> C) Realizar backups de dados</li>
+                        </ul>
+                    </div>
 
-                <div class="question" id="q2">
-                    <h3>2. Qual é o propósito do protocolo HTTP?</h3>
-                    <ul class="answers">
-                        <li><input type="radio" name="q2" value="a"> A) Transferir arquivos entre computadores</li>
-                        <li><input type="radio" name="q2" value="b"> B) Garantir a segurança das informações</li>
-                        <li><input type="radio" name="q2" value="c"> C) Facilitar a comunicação entre navegadores e servidores web</li>
-                    </ul>
-                </div>
-
-                <div class="question" id="q3">
-                    <h3>3. O que significa a sigla URL?</h3>
-                    <ul class="answers">
-                        <li><input type="radio" name="q3" value="a"> A) Uniform Resource Locator</li>
-                        <li><input type="radio" name="q3" value="b"> B) Universal Resource Language</li>
-                        <li><input type="radio" name="q3" value="c"> C) Uniform Resource Language</li>
-                    </ul>
-                </div>
-
-                <div class="question" id="q4">
-                    <h3>4. O que é um IP?</h3>
-                    <ul class="answers">
-                        <li><input type="radio" name="q4" value="a"> A) Um tipo de software de segurança</li>
-                        <li><input type="radio" name="q4" value="b"> B) Um endereço único atribuído a cada dispositivo na internet</li>
-                        <li><input type="radio" name="q4" value="c"> C) Um protocolo de comunicação</li>
-                    </ul>
-                </div>
-
-                <div class="question" id="q5">
-                    <h3>5. O que faz um navegador web?</h3>
-                    <ul class="answers">
-                        <li><input type="radio" name="q5" value="a"> A) Armazena dados em cache</li>
-                        <li><input type="radio" name="q5" value="b"> B) Permite a visualização e interação com sites web</li>
-                        <li><input type="radio" name="q5" value="c"> C) Gerencia redes de computadores</li>
-                    </ul>
-                </div>
-
-                <div class="question" id="q6">
-                    <h3>6. Qual é a função de um servidor DNS?</h3>
-                    <ul class="answers">
-                        <li><input type="radio" name="q6" value="a"> A) Traduzir URLs em endereços IP</li>
-                        <li><input type="radio" name="q6" value="b"> B) Enviar e-mails</li>
-                        <li><input type="radio" name="q6" value="c"> C) Proteger a rede contra ataques</li>
-                    </ul>
-                </div>
-
-                <div class="question" id="q7">
-                    <h3>7. O que é um protocolo de rede?</h3>
-                    <ul class="answers">
-                        <li><input type="radio" name="q7" value="a"> A) Um conjunto de regras para comunicação entre dispositivos</li>
-                        <li><input type="radio" name="q7" value="b"> B) Um tipo de vírus de computador</li>
-                        <li><input type="radio" name="q7" value="c"> C) Um software antivírus</li>
-                    </ul>
-                </div>
-
-                <div class="question" id="q8">
-                    <h3>8. O que é um website?</h3>
-                    <ul class="answers">
-                        <li><input type="radio" name="q8" value="a"> A) Uma coleção de páginas da web acessíveis na internet</li>
-                        <li><input type="radio" name="q8" value="b"> B) Um programa de e-mail</li>
-                        <li><input type="radio" name="q8" value="c"> C) Um tipo de malware</li>
-                    </ul>
-                </div>
-
-                <div class="question" id="q9">
-                    <h3>9. Qual é a função do protocolo TCP?</h3>
-                    <ul class="answers">
-                        <li><input type="radio" name="q9" value="a"> A) Garantir a entrega correta e completa de dados entre dispositivos</li>
-                        <li><input type="radio" name="q9" value="b"> B) Gerenciar as conexões de e-mail</li>
-                        <li><input type="radio" name="q9" value="c"> C) Realizar backups de dados</li>
-                    </ul>
-                </div>
-
-                <div class="question" id="q10">
-                    <h3>10. O que é um firewall?</h3>
-                    <ul class="answers">
-                        <li><input type="radio" name="q10" value="a"> A) Um sistema de segurança que controla o tráfego de rede</li>
-                        <li><input type="radio" name="q10" value="b"> B) Um tipo de software para edição de vídeos</li>
-                        <li><input type="radio" name="q10" value="c"> C) Um serviço de armazenamento na nuvem</li>
-                    </ul>
-                </div>
+                    <div class="question">
+                        <h3>10. O que é um firewall?</h3>
+                        <ul class="answers">
+                           <li><input type="radio" name="q10" value="a"> A) Um sistema de segurança que controla o tráfego de rede</li>
+                           <li><input type="radio" name="q10" value="b"> B) Um tipo de software para edição de vídeos</li>
+                           <li><input type="radio" name="q10" value="c"> C) Um serviço de armazenamento na nuvem</li>
+                        </ul>
+                    </div>
 
                 <button type="button" class="submit-btn" onclick="checkAnswers()">Enviar Respostas</button>
+                <button type="button" class="replay-btn" onclick="resetQuiz()" style="display: none;">Reiniciar Quiz</button>
             </form>
 
             <div id="result" class="result"></div>
-            <div id="questionSummary" class="question-summary"></div>
-            <button id="replayBtn" class="replay-btn" onclick="restartQuiz()" style="display: none;">Reiniciar Quiz</button>
+            <div id="questionSummary"></div>
         </div>
     </main>
 
     <script>
-       function startQuiz() {
+        function startQuiz() {
             const nickname = document.getElementById('nickname').value.trim();
-            if (!nickname) {
-                alert('Por favor, digite seu apelido antes de iniciar o quiz.');
+            if (nickname === '') {
+                alert('Por favor, insira seu apelido para começar o quiz.');
                 return;
             }
+
             document.querySelector('.start-container').style.display = 'none';
             document.querySelector('.quiz-container').style.display = 'block';
         }
@@ -384,68 +323,38 @@
             let score = 0;
             const form = document.getElementById('quizForm');
             const resultDiv = document.getElementById('result');
-            const progressBar = document.getElementById('progressBar');
-            const totalQuestions = Object.keys(correctAnswers).length;
+            const questionSummary = document.getElementById('questionSummary');
 
-            let correctCount = 0;
-            let incorrectQuestions = [];
+            questionSummary.innerHTML = ''; // Clear previous summary
 
-            Object.keys(correctAnswers).forEach((question) => {
-                const selectedOption = form.querySelector(`input[name=${question}]:checked`);
-                const isCorrect = selectedOption && selectedOption.value === correctAnswers[question];
-
-                if (isCorrect) {
+            for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
+                const selectedOption = form.querySelector(`input[name="${question}"]:checked`);
+                if (selectedOption && selectedOption.value === correctAnswer) {
                     score++;
-                    correctCount++;
+                    questionSummary.innerHTML += `<div class="correct">Questão ${question.slice(1)}: Correta</div>`;
                 } else {
-                    incorrectQuestions.push(question);
+                    questionSummary.innerHTML += `<div class="incorrect">Questão ${question.slice(1)}: Incorreta</div>`;
                 }
-            });
-
-            const progress = (score / totalQuestions) * 100;
-            progressBar.style.width = `${progress}%`;
-
-            resultDiv.innerHTML = `
-                <h2>Resultado</h2>
-                <p>Você acertou ${correctCount} de ${totalQuestions} perguntas.</p>
-            `;
-
-            resultDiv.className = 'result correct';
-            if (correctCount < totalQuestions) {
-                resultDiv.className = 'result incorrect';
             }
 
-            // Mostrar perguntas com cores
-            const questionSummary = document.getElementById('questionSummary');
-            questionSummary.innerHTML = '';
-
-            Object.keys(correctAnswers).forEach((question) => {
-                const questionDiv = document.createElement('div');
-                const selectedOption = form.querySelector(`input[name=${question}]:checked`);
-                const isCorrect = selectedOption && selectedOption.value === correctAnswers[question];
-                questionDiv.className = isCorrect ? 'correct' : 'incorrect';
-
-                let text = '';
-                if (selectedOption) {
-                    text = selectedOption.parentElement.textContent;
-                } else {
-                    text = 'Nenhuma resposta selecionada';
-                }
-                questionDiv.innerHTML = `<strong>Pergunta ${question}: </strong> ${text}`;
-                questionSummary.appendChild(questionDiv);
-            });
-
-            document.getElementById('replayBtn').style.display = 'block';
+            if (score === Object.keys(correctAnswers).length) {
+                resultDiv.textContent = 'Parabéns! Você respondeu todas as perguntas corretamente.';
+                resultDiv.className = 'result correct';
+            } else {
+                resultDiv.textContent = `Você acertou ${score} de ${Object.keys(correctAnswers).length} perguntas.`;
+                resultDiv.className = 'result incorrect';
+            }
+            resultDiv.style.display = 'block';
+            document.querySelector('.replay-btn').style.display = 'block';
         }
 
-        function restartQuiz() {
-            document.getElementById('nickname').value = '';
-            document.querySelector('.start-container').style.display = 'flex';
+        function resetQuiz() {
+            document.querySelector('.start-container').style.display = 'block';
             document.querySelector('.quiz-container').style.display = 'none';
-            document.getElementById('result').innerHTML = '';
+            document.getElementById('quizForm').reset();
+            document.getElementById('result').style.display = 'none';
             document.getElementById('questionSummary').innerHTML = '';
-            document.getElementById('replayBtn').style.display = 'none';
-            document.getElementById('progressBar').style.width = '0%';
+            document.querySelector('.replay-btn').style.display = 'none';
         }
     </script>
 </body>

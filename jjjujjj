@@ -1,0 +1,142 @@
+<main>
+    <div class="quiz-container">
+        <h2>Quiz: Ferramentas Digitais</h2>
+        <p>Teste seu conhecimento sobre ferramentas digitais e como elas podem facilitar diversas tarefas.</p>
+
+        <form id="quizForm">
+            <!-- Perguntas do Quiz -->
+            <div class="question">
+                <h3>1. O que é uma ferramenta de edição de texto?</h3>
+                <ul class="answers">
+                    <li><input type="radio" name="q1" value="a"> A) Um software para criar e editar documentos de texto</li>
+                    <li><input type="radio" name="q1" value="b"> B) Um aplicativo para gerenciar e-mails</li>
+                    <li><input type="radio" name="q1" value="c"> C) Uma ferramenta para editar imagens</li>
+                </ul>
+            </div>
+
+            <div class="question">
+                <h3>2. Qual é o propósito de uma ferramenta de gerenciamento de projetos?</h3>
+                <ul class="answers">
+                    <li><input type="radio" name="q2" value="a"> A) Organizar e acompanhar o progresso de tarefas e projetos</li>
+                    <li><input type="radio" name="q2" value="b"> B) Editar vídeos e imagens</li>
+                    <li><input type="radio" name="q2" value="c"> C) Criar gráficos e tabelas</li>
+                </ul>
+            </div>
+
+            <div class="question">
+                <h3>3. O que é uma ferramenta de comunicação instantânea?</h3>
+                <ul class="answers">
+                    <li><input type="radio" name="q3" value="a"> A) Um software para troca de mensagens em tempo real</li>
+                    <li><input type="radio" name="q3" value="b"> B) Uma plataforma para criar apresentações</li>
+                    <li><input type="radio" name="q3" value="c"> C) Uma ferramenta para edição de áudio</li>
+                </ul>
+            </div>
+
+            <div class="question">
+                <h3>4. O que é uma ferramenta de armazenamento em nuvem?</h3>
+                <ul class="answers">
+                    <li><input type="radio" name="q4" value="a"> A) Um serviço para armazenar e acessar arquivos pela internet</li>
+                    <li><input type="radio" name="q4" value="b"> B) Um software para edição de textos</li>
+                    <li><input type="radio" name="q4" value="c"> C) Um aplicativo para criar gráficos</li>
+                </ul>
+            </div>
+
+            <div class="question">
+                <h3>5. O que é uma ferramenta de edição de imagens?</h3>
+                <ul class="answers">
+                    <li><input type="radio" name="q5" value="a"> A) Um software para modificar e criar imagens</li>
+                    <li><input type="radio" name="q5" value="b"> B) Um serviço para enviar e-mails</li>
+                    <li><input type="radio" name="q5" value="c"> C) Uma ferramenta para criar planilhas</li>
+                </ul>
+            </div>
+
+            <div class="question">
+                <h3>6. O que é uma ferramenta de análise de dados?</h3>
+                <ul class="answers">
+                    <li><input type="radio" name="q6" value="a"> A) Um software para coletar, processar e analisar dados</li>
+                    <li><input type="radio" name="q6" value="b"> B) Um aplicativo para gerenciamento de tarefas</li>
+                    <li><input type="radio" name="q6" value="c"> C) Um editor de texto</li>
+                </ul>
+            </div>
+
+            <div class="question">
+                <h3>7. O que é uma ferramenta de colaboração online?</h3>
+                <ul class="answers">
+                    <li><input type="radio" name="q7" value="a"> A) Um software que permite a colaboração em tempo real entre usuários</li>
+                    <li><input type="radio" name="q7" value="b"> B) Uma ferramenta para criar gráficos</li>
+                    <li><input type="radio" name="q7" value="c"> C) Um editor de áudio</li>
+                </ul>
+            </div>
+
+            <div class="question">
+                <h3>8. O que é uma ferramenta de design gráfico?</h3>
+                <ul class="answers">
+                    <li><input type="radio" name="q8" value="a"> A) Um software para criar e modificar elementos visuais e gráficos</li>
+                    <li><input type="radio" name="q8" value="b"> B) Uma plataforma de armazenamento em nuvem</li>
+                    <li><input type="radio" name="q8" value="c"> C) Um aplicativo para enviar mensagens</li>
+                </ul>
+            </div>
+
+            <div class="question">
+                <h3>9. O que é uma ferramenta de gerenciamento de e-mails?</h3>
+                <ul class="answers">
+                    <li><input type="radio" name="q9" value="a"> A) Um software para organizar, enviar e receber e-mails</li>
+                    <li><input type="radio" name="q9" value="b"> B) Uma ferramenta para edição de imagens</li>
+                    <li><input type="radio" name="q9" value="c"> C) Um serviço de armazenamento em nuvem</li>
+                </ul>
+            </div>
+
+            <div class="question">
+                <h3>10. O que é uma ferramenta de produtividade?</h3>
+                <ul class="answers">
+                    <li><input type="radio" name="q10" value="a"> A) Um software que ajuda a aumentar a eficiência e organização no trabalho</li>
+                    <li><input type="radio" name="q10" value="b"> B) Um aplicativo para redes sociais</li>
+                    <li><input type="radio" name="q10" value="c"> C) Uma plataforma de streaming</li>
+                </ul>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="checkAnswers()">Enviar Respostas</button>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+</main>
+
+<script>
+    function checkAnswers() {
+        const correctAnswers = {
+            q1: 'a',
+            q2: 'a',
+            q3: 'a',
+            q4: 'a',
+            q5: 'a',
+            q6: 'a',
+            q7: 'a',
+            q8: 'a',
+            q9: 'a',
+            q10: 'a'
+        };
+
+        let score = 0;
+        const form = document.getElementById('quizForm');
+        const resultDiv = document.getElementById('result');
+
+        for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
+            const selectedOption = form.querySelector(`input[name="${question}"]:checked`);
+            if (selectedOption && selectedOption.value === correctAnswer) {
+                score++;
+            }
+        }
+
+        if (score === Object.keys(correctAnswers).length) {
+            resultDiv.textContent = 'Parabéns! Você respondeu todas as perguntas corretamente.';
+            resultDiv.className = 'result correct';
+        } else {
+            resultDiv.textContent = `Você acertou ${score} de ${Object.keys(correctAnswers).length} perguntas.`;
+            resultDiv.className = 'result incorrect';
+        }
+        resultDiv.style.display = 'block';
+    }
+</script>
+</body>
+</html>
