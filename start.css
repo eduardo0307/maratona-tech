@@ -62,9 +62,18 @@ nav ul li a:hover {
     color: #fff;
 }
 
+section {
+    padding: 60px 20px;
+    margin: 100px 0;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
 /* Seção Hero */
 .hero {
-    background-color: #222;
+    background-color: #2e2e2e;
     color: white;
     text-align: center;
     padding: 100px 20px;
@@ -138,7 +147,7 @@ nav ul li a:hover {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 40px;
-    color: #333;
+    color: #f8f8f8;
 }
 
 .features-grid {
@@ -255,7 +264,7 @@ nav ul li a:hover {
 
 /* Seção de Depoimentos */
 .testimonials {
-    background-color: #222;
+    background-color: #2e2e2e;
     padding: 40px 0;
     text-align: center;
 }
@@ -292,7 +301,7 @@ nav ul li a:hover {
 
 /* Seção de Chamada para Ação (CTA) */
 .cta {
-    background-color: #005577;
+    background-color: #2e2e2e;
     padding: 60px 0;
     text-align: center;
     color: #fff;
